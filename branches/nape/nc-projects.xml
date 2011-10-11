@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="nc-projects" default="all">
+  
+  
+  <property file="nc-projects.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="128m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/*.lib/**"/>
+    <exclude name="**/*~/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.zip"/>
+    <include name="*.war"/>
+    <include name="*.egg"/>
+    <include name="*.ear"/>
+    <include name="*.swc"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <include name="**/?*.properties"/>
+    <include name="**/?*.xml"/>
+    <include name="**/?*.gif"/>
+    <include name="**/?*.png"/>
+    <include name="**/?*.jpeg"/>
+    <include name="**/?*.jpg"/>
+    <include name="**/?*.html"/>
+    <include name="**/?*.dtd"/>
+    <include name="**/?*.tld"/>
+    <include name="**/?*.ftl"/>
+  </patternset>
+  
+  
+  <!-- Global Libraries -->
+  
+  <path id="library.global.classpath">
+    <pathelement location="libs/junit-4.8.jar"/>
+  </path>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module Nc-projects -->
+  
+  <dirname property="module.nc-projects.basedir" file="${ant.file}"/>
+  
+  
+  
+  <property name="compiler.args.nc-projects" value="${compiler.args}"/>
+  
+  <property name="nc-projects.output.dir" value="${module.nc-projects.basedir}/out/production/Nc-projects"/>
+  <property name="nc-projects.testoutput.dir" value="${module.nc-projects.basedir}/out/test/Nc-projects"/>
+  
+  <path id="nc-projects.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="nc-projects.module.production.classpath">
+    <path refid="library.global.classpath"/>
+  </path>
+  
+  <path id="nc-projects.runtime.production.module.classpath">
+    <pathelement location="${nc-projects.output.dir}"/>
+    <path refid="library.global.classpath"/>
+  </path>
+  
+  <path id="nc-projects.module.classpath">
+    <pathelement location="${nc-projects.output.dir}"/>
+    <path refid="library.global.classpath"/>
+  </path>
+  
+  <path id="nc-projects.runtime.module.classpath">
+    <pathelement location="${nc-projects.testoutput.dir}"/>
+    <pathelement location="${nc-projects.output.dir}"/>
+    <path refid="library.global.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.nc-projects">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.nc-projects">
+    <patternset refid="excluded.from.module.nc-projects"/>
+  </patternset>
+  
+  <path id="nc-projects.module.sourcepath">
+    <dirset dir="${module.nc-projects.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  <path id="nc-projects.module.test.sourcepath">
+    <dirset dir="${module.nc-projects.basedir}">
+      <include name="test"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.nc-projects" depends="compile.module.nc-projects.production,compile.module.nc-projects.tests" description="Compile module Nc-projects"/>
+  
+  <target name="compile.module.nc-projects.production" description="Compile module Nc-projects; production classes">
+    <mkdir dir="${nc-projects.output.dir}"/>
+    <javac destdir="${nc-projects.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.nc-projects}"/>
+      <bootclasspath refid="nc-projects.module.bootclasspath"/>
+      <classpath refid="nc-projects.module.production.classpath"/>
+      <src refid="nc-projects.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.nc-projects"/>
+    </javac>
+    
+    <copy todir="${nc-projects.output.dir}">
+      <fileset dir="${module.nc-projects.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.nc-projects.tests" depends="compile.module.nc-projects.production" description="compile module Nc-projects; test classes" unless="skip.tests">
+    <mkdir dir="${nc-projects.testoutput.dir}"/>
+    <javac destdir="${nc-projects.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.nc-projects}"/>
+      <bootclasspath refid="nc-projects.module.bootclasspath"/>
+      <classpath refid="nc-projects.module.classpath"/>
+      <src refid="nc-projects.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.nc-projects"/>
+    </javac>
+    
+    <copy todir="${nc-projects.testoutput.dir}">
+      <fileset dir="${module.nc-projects.basedir}/test">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="jar.module.nc-projects.production">
+    <jar destfile="libs/${ant.project.name}.jar">
+      <fileset dir="${nc-projects.output.dir}">
+        <include name="**/*.class"/>
+        <include name="**/*.properties"/>
+        <exclude name="**/CVS"/>
+      </fileset>
+    </jar>
+  </target>
+
+  <target name="jar.module.nc-projects.tests">
+    <jar destfile="libs/${ant.project.name}_test.jar">
+      <fileset dir="${nc-projects.testoutput.dir}">
+        <include name="**/*.class"/>
+        <include name="**/*.properties"/>
+        <exclude name="**/CVS"/>
+      </fileset>
+    </jar>
+  </target>
+
+  <target name="clean.module.nc-projects" description="cleanup module">
+    <delete dir="${nc-projects.output.dir}"/>
+    <delete dir="${nc-projects.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.nc-projects" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.nc-projects" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>
