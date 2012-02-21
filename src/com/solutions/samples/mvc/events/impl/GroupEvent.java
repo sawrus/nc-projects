@@ -9,7 +9,7 @@ public enum GroupEvent implements Event{
     REMOVE_STUDENT,
     FILL,
     CLEAR,
-    SHOW
+    SHOW,
     ;
 
     private Context context;

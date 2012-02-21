@@ -63,11 +63,35 @@ public class Student extends AbstractEntity {
 
     @Override
     public String toString() {
-        return super.toString() + "Student{" +
-                "group=" + group +
+        return super.getName() + " Student{" +
+                "group=" + (group != null ? group.getName() : "") +
                 ", secondName='" + secondName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", startLearn=" + startLearn +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Student student = (Student) o;
+
+        if (group != null ? !group.equals(student.group) : student.group != null) return false;
+        if (lastName != null ? !lastName.equals(student.lastName) : student.lastName != null) return false;
+        if (secondName != null ? !secondName.equals(student.secondName) : student.secondName != null) return false;
+        if (startLearn != null ? !startLearn.equals(student.startLearn) : student.startLearn != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = group != null ? group.hashCode() : 0;
+        result = 31 * result + (secondName != null ? secondName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (startLearn != null ? startLearn.hashCode() : 0);
+        return result;
     }
 }
