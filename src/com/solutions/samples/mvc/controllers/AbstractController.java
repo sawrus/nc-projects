@@ -1,5 +1,7 @@
 package com.solutions.samples.mvc.controllers;
 
+import com.solutions.samples.mvc.context.Context;
+import com.solutions.samples.mvc.context.IContext;
 import com.solutions.samples.mvc.events.Event;
 import com.solutions.samples.mvc.models.IModel;
 import com.solutions.samples.mvc.views.IView;
@@ -7,6 +9,7 @@ import com.solutions.samples.mvc.views.IView;
 public abstract class AbstractController<TModel extends IModel, TView extends IView> implements IController<TModel, TView>{
     protected TModel model;
     protected TView view;
+    public final IContext context = new Context();
 
     public void setModel(TModel model) {
         this.model = model;

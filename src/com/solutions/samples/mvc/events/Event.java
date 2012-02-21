@@ -1,9 +1,9 @@
 package com.solutions.samples.mvc.events;
 
 
-import com.solutions.samples.mvc.context.Context;
+import com.solutions.samples.mvc.context.IContext;
 
 public interface Event {
-    Context getContext();
-    void setContext(Context context);
+    IContext getContext();
+    void setContext(IContext context);
 }
