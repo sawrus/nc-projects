@@ -1,6 +1,6 @@
 package com.solutions.samples.mvc.events.impl;
 
-import com.solutions.samples.mvc.context.Context;
+import com.solutions.samples.mvc.context.IContext;
 import com.solutions.samples.mvc.events.Event;
 
 
@@ -10,13 +10,13 @@ public enum StudentEvent implements Event{
     SHOW
     ;
 
-    private Context context;
+    private IContext context;
 
-    public Context getContext() {
+    public IContext getContext() {
         return context;
     }
 
-    public void setContext(Context context) {
+    public void setContext(IContext context) {
         this.context = context;
     }
 }

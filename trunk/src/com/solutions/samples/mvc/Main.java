@@ -1,6 +1,5 @@
 package com.solutions.samples.mvc;
 
-import com.solutions.samples.mvc.context.Context;
 import com.solutions.samples.mvc.controllers.impl.GroupController;
 import com.solutions.samples.mvc.controllers.impl.StudentController;
 import com.solutions.samples.mvc.entities.impl.Group;
@@ -13,8 +12,6 @@ import com.solutions.samples.mvc.views.impl.GroupConsoleView;
 import com.solutions.samples.mvc.views.impl.StudentConsoleView;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Main {
     public static void main(String[] arguments)
@@ -44,38 +41,14 @@ public class Main {
         groupController.setView(groupConsoleView);
 
         studentController.handleEvent(StudentEvent.CLEAR);
+        groupController.handleEvent(GroupEvent.FILL);
 
-        final Context CONTEXT = new Context() {
-            private final Map<String, Object> properties = new HashMap<String, Object>();
+        studentController.context.setProperty("group", group);
+        studentController.context.setProperty("startLearn", new Date());
+        studentController.handleEvent(StudentEvent.FILL);
 
-            public void setProperty(String name, Object value) {
-                properties.put(name, value);
-            }
-
-            public Object getProperty(String name) {
-                return properties.get(name);
-            }
-        };
-
-        CONTEXT.setProperty("name", "TGU");
-        CONTEXT.setProperty("number", 501);
-        GroupEvent FILL_GROUP = GroupEvent.FILL;
-        FILL_GROUP.setContext(CONTEXT);
-        groupController.handleEvent(FILL_GROUP);
-
-        CONTEXT.setProperty("name","Evgeny");
-        CONTEXT.setProperty("secondName", "Isaev");
-        CONTEXT.setProperty("lastName", "Alex");
-        CONTEXT.setProperty("group", group);
-        CONTEXT.setProperty("startLearn", new Date());
-        StudentEvent FILL_STUDENT = StudentEvent.FILL;
-        FILL_STUDENT.setContext(CONTEXT);
-        studentController.handleEvent(FILL_STUDENT);
-
-        CONTEXT.setProperty("student", student);
-        GroupEvent ADD_STUDENT = GroupEvent.ADD_STUDENT;
-        ADD_STUDENT.setContext(CONTEXT);
-        groupController.handleEvent(ADD_STUDENT);
+        groupController.context.setProperty("student", student);
+        groupController.handleEvent(GroupEvent.ADD_STUDENT);
 
         studentController.handleEvent(StudentEvent.SHOW);
         groupController.handleEvent(GroupEvent.SHOW);
