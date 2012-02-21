@@ -6,7 +6,7 @@ import com.solutions.samples.mvc.views.AbstractView;
 public class GroupConsoleView extends AbstractView<GroupModel> {
 
     public void show() {
-        model.getEntity().toString();
+        System.out.println(model.getEntity());
     }
 
     public void hide() {

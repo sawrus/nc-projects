@@ -42,9 +42,29 @@ public class Group<TStudent extends Student> extends AbstractEntity {
 
     @Override
     public String toString() {
-        return super.toString() + "Group{" +
+        return super.getName() + " Group{" +
                 "students=" + students +
                 ", number=" + number +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Group group = (Group) o;
+
+        if (number != null ? !number.equals(group.number) : group.number != null) return false;
+        if (!students.equals(group.students)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = students.hashCode();
+        result = 31 * result + (number != null ? number.hashCode() : 0);
+        return result;
     }
 }
