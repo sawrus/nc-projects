@@ -39,6 +39,7 @@ public class Student extends AbstractEntity {
 
     public void setGroup(Group group) {
         this.group = group;
+        group.addStudent(this);
     }
 
     public void setSecondName(String secondName) {

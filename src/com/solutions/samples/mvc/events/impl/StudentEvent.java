@@ -5,6 +5,7 @@ import com.solutions.samples.mvc.events.Event;
 
 
 public enum StudentEvent implements Event{
+    //console events
     CLEAR,
     FILL,
     SHOW

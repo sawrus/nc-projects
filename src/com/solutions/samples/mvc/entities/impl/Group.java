@@ -43,7 +43,7 @@ public class Group<TStudent extends Student> extends AbstractEntity {
     @Override
     public String toString() {
         return super.getName() + " Group{" +
-                "students=" + students +
+                "students=" + students.values() +
                 ", number=" + number +
                 '}';
     }
