@@ -6,12 +6,12 @@ import com.solutions.samples.mvc.entities.impl.Student;
 import com.solutions.samples.mvc.models.AbstractModel;
 
 public class GroupModel extends AbstractModel<Group<Student>> {
+    public GroupModel(Group<Student> studentGroup) {
+        super(studentGroup);
+    }
+
     public void fill(IContext context) {
         entity.setNumber((Integer) context.getProperty("number"));
         entity.setName(String.valueOf(context.getProperty("name")));
-    }
-
-    public void addStudent(IContext context){
-        entity.addStudent((Student) context.getProperty("student"));
     }
 }

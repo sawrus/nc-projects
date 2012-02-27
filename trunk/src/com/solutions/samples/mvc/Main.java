@@ -11,43 +11,38 @@ import com.solutions.samples.mvc.models.impl.StudentModel;
 import com.solutions.samples.mvc.views.impl.GroupConsoleView;
 import com.solutions.samples.mvc.views.impl.StudentConsoleView;
 
-import java.util.Date;
-
 public class Main {
-    public static void main(String[] arguments)
-    {
+    public static void main(String[] arguments) {
+        //entities
         Student student = new Student();
         Group<Student> group = new Group<Student>();
 
-        StudentModel studentModel = new StudentModel();
-        studentModel.setEntity(student);
+        //models
+        GroupModel groupModel = new GroupModel(group);
+        StudentModel studentModel = new StudentModel(student, groupModel);
 
-        GroupModel groupModel = new GroupModel();
-        groupModel.setEntity(group);
-
-        StudentController studentController = new StudentController();
-        GroupController groupController = new GroupController();
-
+        //views
         StudentConsoleView studentConsoleView = new StudentConsoleView();
         GroupConsoleView groupConsoleView = new GroupConsoleView();
 
-        studentController.setModel(studentModel);
-        studentController.setView(studentConsoleView);
+        //controllers
+        {
+            StudentController studentController = new StudentController();
+            studentController.setModel(studentModel);
+            studentController.setView(studentConsoleView);
 
-        groupController.setModel(groupModel);
-        groupController.setView(groupConsoleView);
+            GroupController groupController = new GroupController();
+            groupController.setModel(groupModel);
+            groupController.setView(groupConsoleView);
 
-        studentController.handleEvent(StudentEvent.CLEAR);
-        groupController.handleEvent(GroupEvent.FILL);
+            //handle events and internal manage slave objects type of { 'Model', 'View' }
+            {
+                studentController.handleEvent(StudentEvent.FILL);
+                groupController.handleEvent(GroupEvent.FILL);
 
-        studentController.context.setProperty("group", group);
-        studentController.context.setProperty("startLearn", new Date());
-        studentController.handleEvent(StudentEvent.FILL);
-
-        groupController.context.setProperty("student", student);
-        groupController.handleEvent(GroupEvent.ADD_STUDENT);
-
-        studentController.handleEvent(StudentEvent.SHOW);
-        groupController.handleEvent(GroupEvent.SHOW);
+                studentController.handleEvent(StudentEvent.SHOW);
+                groupController.handleEvent(GroupEvent.SHOW);
+            }
+        }
     }
 }

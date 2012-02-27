@@ -25,9 +25,6 @@ public class GroupController extends AbstractController<GroupModel, GroupConsole
                 case SHOW:
                     show();
                     break;
-                case ADD_STUDENT:
-                    model.addStudent(context);
-                    break;
                 default:
                     throw new IllegalStateException();
             }

@@ -32,8 +32,7 @@ public class StudentController extends AbstractController<StudentModel, StudentC
 
         private void fillStudent() throws IOException {
             view.fill();
-            model.fillPrimaryInformation(context);
-            model.fillSecondaryInformation(view.context);
+            model.fill(view.context);
         }
     };
 

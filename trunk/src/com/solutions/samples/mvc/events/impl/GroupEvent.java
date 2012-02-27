@@ -5,8 +5,7 @@ import com.solutions.samples.mvc.events.Event;
 
 
 public enum GroupEvent implements Event{
-    ADD_STUDENT,
-    REMOVE_STUDENT,
+    //console events
     FILL,
     CLEAR,
     SHOW,
