@@ -23,7 +23,7 @@ public class StudentController extends AbstractController<StudentModel, StudentC
                     }
                     break;
                 case SHOW:
-                    view.show();
+                    show();
                     break;
                 default:
                     throw new IllegalStateException();
@@ -36,6 +36,11 @@ public class StudentController extends AbstractController<StudentModel, StudentC
             model.fillSecondaryInformation(view.context);
         }
     };
+
+    private void show() {
+        view.context.setProperty("entity", model.getEntity());
+        view.show();
+    }
 
     public void handleEvent(Event event) {
         if (event instanceof StudentEvent){
