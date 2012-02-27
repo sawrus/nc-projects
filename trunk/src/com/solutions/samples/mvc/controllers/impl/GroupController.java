@@ -23,7 +23,7 @@ public class GroupController extends AbstractController<GroupModel, GroupConsole
                     }
                     break;
                 case SHOW:
-                    view.show();
+                    show();
                     break;
                 case ADD_STUDENT:
                     model.addStudent(context);
@@ -38,6 +38,11 @@ public class GroupController extends AbstractController<GroupModel, GroupConsole
             model.fill(view.context);
         }
     };
+
+    private void show() {
+        view.context.setProperty("entity", model.getEntity());
+        view.show();
+    }
 
     public void handleEvent(Event event) {
         if (event instanceof GroupEvent){

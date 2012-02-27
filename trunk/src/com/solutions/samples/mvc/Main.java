@@ -29,10 +29,7 @@ public class Main {
         GroupController groupController = new GroupController();
 
         StudentConsoleView studentConsoleView = new StudentConsoleView();
-        studentConsoleView.setModel(studentModel);
-
         GroupConsoleView groupConsoleView = new GroupConsoleView();
-        groupConsoleView.setModel(groupModel);
 
         studentController.setModel(studentModel);
         studentController.setView(studentConsoleView);
