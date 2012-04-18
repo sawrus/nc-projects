@@ -1,18 +1,17 @@
-package com.solutions.mvc.controllers.impl;
+package com.solutions.controllers.impl;
 
-import com.solutions.mvc.controllers.AbstractController;
-import com.solutions.mvc.events.Event;
-import com.solutions.mvc.events.impl.VicarEvent;
-import com.solutions.mvc.events.impl.OfficeEvent;
-import com.solutions.mvc.models.impl.OfficeModel;
-import com.solutions.mvc.views.impl.OfficeConsoleView;
+import com.solutions.controllers.AbstractController;
+import com.solutions.events.Event;
+import com.solutions.events.impl.OfficeEvent;
+import com.solutions.models.impl.OfficeModel;
+import com.solutions.views.impl.OfficeConsoleView;
 
 import java.io.IOException;
 
 public class OfficeController extends AbstractController<OfficeModel, OfficeConsoleView> {
     private final EventHandler officeEventHandler = new EventHandler() {
         public void handle(Event event) {
-            switch ((OfficeEvent)event){
+            switch ((OfficeEvent) event) {
                 case CLEAR:
                     model.clear();
                     break;
@@ -29,22 +28,22 @@ public class OfficeController extends AbstractController<OfficeModel, OfficeCons
                 case SHOW:
                     try {
                         show();
-                    }catch (IOException e) {
-                       throw new RuntimeException(e);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
                     break;
                 case REDACT:
                     try {
                         redact();
-                    }catch (IOException e) {
-                       throw new RuntimeException(e);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
                     break;
                 case SEARCH:
                     try {
                         search();
-                    }catch (IOException e) {
-                       throw new RuntimeException(e);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
                     break;
                 default:
@@ -58,9 +57,9 @@ public class OfficeController extends AbstractController<OfficeModel, OfficeCons
         }
     };
 
-    private void search () throws IOException{
-       view.search();
-       model.search(view.context);
+    private void search() throws IOException {
+        view.search();
+        model.search(view.context);
     }
 
     private void show() throws IOException {
@@ -70,11 +69,11 @@ public class OfficeController extends AbstractController<OfficeModel, OfficeCons
 
     private void redact() throws IOException {
         view.redact();
-        model.redact(view.context);
+        model.redact(view.context, view.iread);
     }
 
     public void handleEvent(Event event) {
-        if (event instanceof OfficeEvent){
+        if (event instanceof OfficeEvent) {
             officeEventHandler.handle(event);
         }
     }
