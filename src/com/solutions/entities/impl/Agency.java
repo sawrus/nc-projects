@@ -19,7 +19,7 @@ public class Agency extends AbstractEntity {
   }
 
  public void clear() {
-        name = "";
+    name = "";
 		agency.clear();
     }
 
