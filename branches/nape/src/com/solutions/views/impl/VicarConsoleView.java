@@ -1,24 +1,22 @@
-package com.solutions.mvc.views.impl;
+package com.solutions.views.impl;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class VicarConsoleView extends ConsoleView {
     public void fill() throws IOException {
-        context.setProperty("name", readParameter("Vicar name"));
-        context.setProperty("secondName", readParameter("Vicar secondName"));
-        context.setProperty("lastName", readParameter("Vicar lastName"));
-        context.setProperty("depart",readParameter("Depart"));
-		context.setProperty("phone", readParameter("Vicar phone"));
-		context.setProperty("salary", new Integer(readParameter("Vicar salary")));
-		
+        context.setProperty("name", iread.readParameter("Vicar name"));
+        context.setProperty("secondName", iread.readParameter("Vicar secondName"));
+        context.setProperty("lastName", iread.readParameter("Vicar lastName"));
+        context.setProperty("depart", iread.readParameter("Depart"));
+        context.setProperty("phone", iread.readParameter("Vicar phone"));
+        context.setProperty("salary", new Integer(iread.readParameter("Vicar salary")));
+
     }
 
     public void redact() throws IOException {
 
-       BufferedReader bReaderM = new BufferedReader(new InputStreamReader(System.in));
-        int l=0;
+        String Y;
+        int l = 0;
         while (true) {
             System.out.println("What you want?");
             System.out.println("1) name");
@@ -29,28 +27,30 @@ public class VicarConsoleView extends ConsoleView {
             System.out.println("6) salary");
             System.out.println("7) exit");
             l = 0;
-            l = Integer.valueOf(bReaderM.readLine());
+            Y = iread.readParameter("?");
+            l = Integer.valueOf(Y);
             if (l == 1) {
-                context.setProperty("name", readParameter("Vicar name"));
+                context.setProperty("name", iread.readParameter("Vicar name"));
                 continue;
             }
             if (l == 2) {
-                context.setProperty("secondName", readParameter("Vicar secondName"));
+                context.setProperty("secondName", iread.readParameter("Vicar secondName"));
                 continue;
             }
             if (l == 3) {
-                context.setProperty("lastName", readParameter("Vicar lastName"));
+                context.setProperty("lastName", iread.readParameter("Vicar lastName"));
                 continue;
             }
             if (l == 4) {
-                context.setProperty("phone", readParameter("Vicar phone"));
+                context.setProperty("phone", iread.readParameter("Vicar phone"));
                 continue;
             }
             if (l == 5) {
-                break;
+                context.setProperty("depart", iread.readParameter("Depart title"));
+                continue;
             }
             if (l == 6) {
-                context.setProperty("salary", new Integer(readParameter("Vicar salary")));
+                context.setProperty("salary", new Integer(iread.readParameter("Vicar salary")));
                 continue;
             }
             if (l == 7) {
