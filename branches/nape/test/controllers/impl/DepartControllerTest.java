@@ -14,13 +14,6 @@ import static junit.framework.Assert.assertSame;
 import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.expect;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Chaotickgood
- * Date: 18.04.12
- * Time: 19:07
- * To change this template use File | Settings | File Templates.
- */
 public class DepartControllerTest {
 
     private DepartConsoleView departConsoleView;
@@ -56,6 +49,7 @@ public class DepartControllerTest {
         assertSame(departModel.getEntity().getName(), "");
         assertSame(departModel.getEntity().getChief(), null);
         EasyMock.reset(mock);
+        
         //test fill()
         expect(mock.readParameter("Depart name")).andReturn("First depart");
         expect(mock.readParameter("Chief of Depart")).andReturn("Sepius I");
@@ -64,9 +58,11 @@ public class DepartControllerTest {
         EasyMock.verify(mock);
         assertSame(departModel.getEntity().getName(), "First depart");
         assertSame(departModel.getEntity().getChief(), "Sepius I");
+        
         //test show()
         EasyMock.reset(mock);
         departController.handleEvent(DepartEvent.SHOW);
+        
         //test redact()
         EasyMock.reset(mock);
         expect(mock.readParameter("?")).andReturn("1");
