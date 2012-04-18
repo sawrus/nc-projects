@@ -1,16 +1,15 @@
-package com.solutions.mvc.events.impl;
+package com.solutions.events.impl;
 
-import com.solutions.mvc.context.IContext;
-import com.solutions.mvc.events.Event;
+import com.solutions.context.IContext;
+import com.solutions.events.Event;
 
 
-public enum DepartEvent implements Event{
+public enum DepartEvent implements Event {
     //console events
     FILL,
     CLEAR,
     SHOW,
-    REDACT
-    ;
+    REDACT;
 
     private IContext context;
 
