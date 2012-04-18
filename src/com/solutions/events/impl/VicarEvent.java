@@ -1,16 +1,15 @@
-package com.solutions.mvc.events.impl;
+package com.solutions.events.impl;
 
-import com.solutions.mvc.context.IContext;
-import com.solutions.mvc.events.Event;
+import com.solutions.context.IContext;
+import com.solutions.events.Event;
 
 
-public enum VicarEvent implements Event{
+public enum VicarEvent implements Event {
     //console events
     CLEAR,
     FILL,
     SHOW,
-    REDACT
-    ;
+    REDACT;
 
     private IContext context;
 
