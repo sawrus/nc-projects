@@ -1,17 +1,16 @@
-package com.solutions.mvc.events.impl;
+package com.solutions.events.impl;
 
-import com.solutions.mvc.context.IContext;
-import com.solutions.mvc.events.Event;
+import com.solutions.context.IContext;
+import com.solutions.events.Event;
 
 
-public enum AgencyEvent implements Event{
+public enum AgencyEvent implements Event {
     //console events
     FILL,
     CLEAR,
     SHOW,
     REDACT,
-	SEARCH
-    ;
+    SEARCH;
 
     private IContext context;
 
