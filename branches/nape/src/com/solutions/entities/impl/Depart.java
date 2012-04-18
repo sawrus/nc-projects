@@ -5,7 +5,8 @@ import com.solutions.entities.AbstractEntity;
 public class Depart extends AbstractEntity {
     private String chief;
 
-    public Depart(){}
+    public Depart() {
+    }
 
     public Depart(String name, String chief) {
         super(name);
@@ -18,7 +19,7 @@ public class Depart extends AbstractEntity {
 
     public void clear() {
         name = "";
-		chief = null;
+        chief = null;
     }
 
     public void setChief(String chief) {
