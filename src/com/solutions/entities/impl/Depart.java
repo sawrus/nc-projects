@@ -1,9 +1,6 @@
-package com.solutions.mvc.entities.impl;
+package com.solutions.entities.impl;
 
-import com.solutions.mvc.entities.AbstractEntity;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.solutions.entities.AbstractEntity;
 
 public class Depart extends AbstractEntity {
     private String chief;
@@ -26,8 +23,6 @@ public class Depart extends AbstractEntity {
 
     public void setChief(String chief) {
         this.chief = chief;
-        //System.out.println(chief.getName());
-		//chief.setDepart(this);
     }
 
     @Override
