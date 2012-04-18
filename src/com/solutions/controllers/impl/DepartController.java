@@ -1,17 +1,17 @@
-package com.solutions.mvc.controllers.impl;
+package com.solutions.controllers.impl;
 
-import com.solutions.mvc.controllers.AbstractController;
-import com.solutions.mvc.events.Event;
-import com.solutions.mvc.events.impl.DepartEvent;
-import com.solutions.mvc.models.impl.DepartModel;
-import com.solutions.mvc.views.impl.DepartConsoleView;
+import com.solutions.controllers.AbstractController;
+import com.solutions.events.Event;
+import com.solutions.events.impl.DepartEvent;
+import com.solutions.models.impl.DepartModel;
+import com.solutions.views.impl.DepartConsoleView;
 
 import java.io.IOException;
 
 public class DepartController extends AbstractController<DepartModel, DepartConsoleView> {
     private EventHandler departEventHandler = new EventHandler() {
         public void handle(Event event) {
-            switch ((DepartEvent)event){
+            switch ((DepartEvent) event) {
                 case CLEAR:
                     model.clear();
                     break;
@@ -31,9 +31,9 @@ public class DepartController extends AbstractController<DepartModel, DepartCons
                     break;
                 case REDACT:
                     try {
-                    redact();
-                    }catch (IOException e) {
-                       throw new RuntimeException(e);
+                        redact();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
                     break;
                 default:
@@ -47,19 +47,21 @@ public class DepartController extends AbstractController<DepartModel, DepartCons
         }
     };
 
-    private void show() throws IOException{
+    private void show() throws IOException {
         view.context.setProperty("entity", model.getEntity());
         view.show();
     }
 
     private void redact() throws IOException {
         view.context.setProperty("entity", model.getEntity());
-        int n = view.redact();
-        model.redact(view.context, n);
+        view.context.setProperty("name", model.getEntity().getName());
+        view.context.setProperty("chief", model.getEntity().getChief());
+        view.redact();
+        model.redact(view.context);
     }
 
     public void handleEvent(Event event) {
-        if (event instanceof DepartEvent){
+        if (event instanceof DepartEvent) {
             departEventHandler.handle(event);
         }
     }
