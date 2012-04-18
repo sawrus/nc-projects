@@ -9,7 +9,6 @@ public class ConsoleRead implements IRead {
 
     public String readParameter(String name) throws IOException {
         System.out.print(name + "=");
-        //return name;
         return input.readLine();
     }
 }
