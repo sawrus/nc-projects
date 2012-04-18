@@ -1,17 +1,17 @@
-package com.solutions.mvc.controllers.impl;
+package com.solutions.controllers.impl;
 
-import com.solutions.mvc.controllers.AbstractController;
-import com.solutions.mvc.events.Event;
-import com.solutions.mvc.events.impl.VicarEvent;
-import com.solutions.mvc.models.impl.VicarModel;
-import com.solutions.mvc.views.impl.VicarConsoleView;
+import com.solutions.controllers.AbstractController;
+import com.solutions.events.Event;
+import com.solutions.events.impl.VicarEvent;
+import com.solutions.models.impl.VicarModel;
+import com.solutions.views.impl.VicarConsoleView;
 
 import java.io.IOException;
 
 public class VicarController extends AbstractController<VicarModel, VicarConsoleView> {
     private final EventHandler vicarEventHandler = new EventHandler() {
         public void handle(Event event) {
-            switch ((VicarEvent)event){
+            switch ((VicarEvent) event) {
                 case CLEAR:
                     model.clear();
                     break;
@@ -31,9 +31,9 @@ public class VicarController extends AbstractController<VicarModel, VicarConsole
                     break;
                 case REDACT:
                     try {
-                    redact();
-                    }catch (IOException e) {
-                       throw new RuntimeException(e);
+                        redact();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
                     break;
                 default:
@@ -47,18 +47,26 @@ public class VicarController extends AbstractController<VicarModel, VicarConsole
         }
     };
 
-    private void show()throws IOException {
+    private void show() throws IOException {
         view.context.setProperty("entity", model.getEntity());
         view.show();
     }
 
     private void redact() throws IOException {
         view.context.setProperty("entity", model.getEntity());
+        view.context.setProperty("name", model.getEntity().getName());
+        view.context.setProperty("secondName", model.getEntity().getSecondName());
+        view.context.setProperty("lastName", model.getEntity().getLastName());
+        view.context.setProperty("depart", model.getEntity().getDepart().getName());
+        view.context.setProperty("phone", model.getEntity().getPhone());
+        view.context.setProperty("salary", model.getEntity().getSalary());
         view.redact();
+        context.setProperty("depart", model.redact(view.context));
+
     }
 
     public void handleEvent(Event event) {
-        if (event instanceof VicarEvent){
+        if (event instanceof VicarEvent) {
             vicarEventHandler.handle(event);
         }
     }
