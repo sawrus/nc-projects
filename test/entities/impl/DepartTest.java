@@ -6,13 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Chaotickgood
- * Date: 21.04.12
- * Time: 20:31
- * To change this template use File | Settings | File Templates.
- */
+
 public class DepartTest {
 
     private Depart depart = new Depart("X", "Y");
