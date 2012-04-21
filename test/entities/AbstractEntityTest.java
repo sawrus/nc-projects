@@ -6,13 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertSame;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Chaotickgood
- * Date: 21.04.12
- * Time: 17:06
- * To change this template use File | Settings | File Templates.
- */
+
 public class AbstractEntityTest {
 
     class ConcreteEntity extends AbstractEntity {
@@ -21,9 +15,7 @@ public class AbstractEntityTest {
             this.name = name;
         }
 
-        public void clear() {
-            //To change body of implemented methods use File | Settings | File Templates.
-        }
+        public void clear() {}
     }
 
     private ConcreteEntity concreteEntity = new ConcreteEntity("Alpha");
