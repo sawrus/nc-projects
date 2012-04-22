@@ -114,5 +114,9 @@ public OfficeModel(Office office, IModel parent) {
     public void search(IContext context) {
         SearchVicar(String.valueOf(context.getProperty("pattern")));
     }
+    
+    public void delete(IContext context) {
+        entity.DeleteVicar(String.valueOf(context.getProperty("name")));
+    }
 }
 
