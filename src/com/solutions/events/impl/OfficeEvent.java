@@ -10,7 +10,8 @@ public enum OfficeEvent implements Event {
     CLEAR,
     SHOW,
     REDACT,
-    SEARCH;
+    SEARCH,
+    DELETE;
 
     private IContext context;
 
