@@ -32,4 +32,8 @@ public class OfficeConsoleView extends ConsoleView {
     public void search() throws IOException {
         context.setProperty("pattern", iread.readParameter("Name(s)?"));
     }
+    
+    public void delete() throws IOException {
+        context.setProperty("name", iread.readParameter("Vicar name"));
+    }
 }	
