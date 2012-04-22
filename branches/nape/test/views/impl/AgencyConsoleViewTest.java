@@ -72,4 +72,14 @@ public class AgencyConsoleViewTest {
        EasyMock.verify(mock);
        assertSame(agencyConsoleView.context.getProperty("pattern"),"F*rst ?");
     }
+    
+    @Test
+    public void testDelete() throws Exception {
+        EasyMock.reset(mock);
+        expect(mock.readParameter("Depart title")).andReturn("DeleteDepart");
+        EasyMock.replay(mock);
+        agencyConsoleView.redact();
+        EasyMock.verify(mock);
+        assertSame(agencyConsoleView.context.getProperty("title"), "DeleteDepart");
+    }
 }
