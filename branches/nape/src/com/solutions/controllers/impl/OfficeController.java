@@ -46,6 +46,13 @@ public class OfficeController extends AbstractController<OfficeModel, OfficeCons
                         throw new RuntimeException(e);
                     }
                     break;
+                case DELETE:
+                    try {
+                        delete();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;    
                 default:
                     throw new IllegalStateException();
             }
@@ -70,6 +77,11 @@ public class OfficeController extends AbstractController<OfficeModel, OfficeCons
     private void redact() throws IOException {
         view.redact();
         model.redact(view.context, view.iread);
+    }
+    
+    private void delete() throws IOException {
+        view.delete();
+        model.delete(view.context);
     }
 
     public void handleEvent(Event event) {
