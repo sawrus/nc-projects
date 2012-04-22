@@ -105,5 +105,13 @@ public class OfficeControllerTest {
         assertSame(officeModel.getEntity().GetVicar("Adam").getLastName(), "Adamson");
         assertSame(officeModel.getEntity().GetVicar("Adam").getPhone(), "3");
         assertSame(officeModel.getEntity().GetVicar("Adam").getSalary(), 4);
+        
+         //test delete()
+        EasyMock.reset(mock);
+        expect(mock.readParameter("Vicar name")).andReturn("Adam");
+        EasyMock.replay(mock);
+        officeController.handleEvent(OfficeEvent.DELETE);
+        EasyMock.verify(mock);
+        assertSame(officeModel.getEntity().GetVicar("Adam"), null);
     }
 }
