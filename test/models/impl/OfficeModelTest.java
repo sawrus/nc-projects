@@ -142,4 +142,16 @@ public class OfficeModelTest {
         p.setProperty("pattern", "*");
         v.search(p);
     }
+    
+    @Test
+    public void testDelete() throws Exception {
+        p = new Context();
+        Depart q = new Depart("h", "u");
+        Vicar r = new Vicar("u", q, "h", "t", "36", 6);
+        p.setProperty("vicar", r);
+        v.fill(p);
+        p.setProperty("name", "u");
+        v.delete(p);
+        Assert.assertSame(v.getEntity().GetVicar("u"), null);
+    }
 }
