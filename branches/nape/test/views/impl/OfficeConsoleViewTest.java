@@ -82,4 +82,15 @@ public class OfficeConsoleViewTest {
         assertSame(officeConsoleView.context.getProperty("pattern"),"?li*");
 
     }
+    
+    @Test
+    public void testDelete() throws Exception {
+        EasyMock.reset(mock);
+        expect(mock.readParameter("Vicar name")).andReturn("Delete Vicar");
+        EasyMock.replay(mock);
+        officeConsoleView.redact();
+        EasyMock.verify(mock);
+        assertSame(officeConsoleView.context.getProperty("name"), "Delete Vicar");
+
+    }
 }
