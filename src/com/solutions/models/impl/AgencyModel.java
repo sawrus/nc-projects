@@ -88,5 +88,9 @@ public class AgencyModel extends AbstractModel<Agency> {
     public void search(IContext context) {
         SearchDepart(String.valueOf(context.getProperty("pattern")));
     }
+    
+    public void delete(IContext context) {
+        entity.DeleteDepart(String.valueOf(context.getProperty("title")));
+    }
 }
 
