@@ -33,4 +33,8 @@ public class AgencyConsoleView extends ConsoleView {
     public void search() throws IOException {
         context.setProperty("pattern", iread.readParameter("Title(s)?"));
     }
+    
+    public void delete() throws IOException {
+        context.setProperty("title", iread.readParameter("Depart title"));
+    }
 }
