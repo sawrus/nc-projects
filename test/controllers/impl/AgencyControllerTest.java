@@ -82,5 +82,13 @@ public class AgencyControllerTest {
         EasyMock.verify(mock);
         assertSame(agencyModel.getEntity().GetDepart("Second depart").getName(), "Second depart");
         assertSame(agencyModel.getEntity().GetDepart("Second depart").getChief(), "Adams");
+        
+        //test delete()
+        EasyMock.reset(mock);
+        expect(mock.readParameter("Depart title")).andReturn("Second depart");
+        EasyMock.replay(mock);
+        agencyController.handleEvent(AgencyEvent.DELETE);
+        EasyMock.verify(mock);
+        assertSame(agencyModel.getEntity().GetDepart("Second depart"), null);
     }
 }
