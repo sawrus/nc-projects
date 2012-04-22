@@ -10,7 +10,8 @@ public enum AgencyEvent implements Event {
     CLEAR,
     SHOW,
     REDACT,
-    SEARCH;
+    SEARCH,
+    DELETE;
 
     private IContext context;
 
