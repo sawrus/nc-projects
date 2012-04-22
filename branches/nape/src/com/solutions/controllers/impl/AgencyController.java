@@ -43,6 +43,13 @@ public class AgencyController extends AbstractController<AgencyModel, AgencyCons
                         throw new RuntimeException(e);
                     }
                     break;
+                case DELETE:
+                    try {
+                        delete();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;    
                 default:
                     throw new IllegalStateException();
             }
@@ -68,6 +75,12 @@ public class AgencyController extends AbstractController<AgencyModel, AgencyCons
         view.redact();
         model.redact(view.context, view.iread);
     }
+    
+    private void delete() throws IOException {
+        view.delete();
+        model.delete(view.context);
+    }
+
 
     public void handleEvent(Event event) {
         if (event instanceof AgencyEvent) {
