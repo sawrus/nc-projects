@@ -1,4 +1,4 @@
-package com.solutions.mvc.views;
+package com.solutions.views;
 
 import java.io.IOException;
 
