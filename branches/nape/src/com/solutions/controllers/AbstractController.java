@@ -1,10 +1,10 @@
-package com.solutions.mvc.controllers;
+package com.solutions.controllers;
 
-import com.solutions.mvc.context.Context;
-import com.solutions.mvc.context.IContext;
-import com.solutions.mvc.events.Event;
-import com.solutions.mvc.models.IModel;
-import com.solutions.mvc.views.IView;
+import com.solutions.context.Context;
+import com.solutions.context.IContext;
+import com.solutions.events.Event;
+import com.solutions.models.IModel;
+import com.solutions.views.IView;
 
 public abstract class AbstractController<TModel extends IModel, TView extends IView> implements IController<TModel, TView>{
     protected TModel model;
