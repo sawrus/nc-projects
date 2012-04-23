@@ -1,4 +1,4 @@
-package com.solutions.mvc.controllers.impl;
+package com.solutions.controllers.impl;
 
 import com.solutions.controllers.impl.AgencyController;
 import com.solutions.entities.impl.Agency;
