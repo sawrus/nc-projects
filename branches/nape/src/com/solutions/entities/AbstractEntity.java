@@ -1,4 +1,4 @@
-package com.solutions.mvc.entities;
+package com.solutions.entities;
 
 public abstract class AbstractEntity implements IEntity{
     protected String name;
