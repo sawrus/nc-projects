@@ -9,6 +9,7 @@ import com.solutions.models.AbstractModel;
 import com.solutions.views.IRead;
 import com.solutions.views.impl.DepartConsoleView;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.regex.Matcher;
@@ -19,7 +20,7 @@ public class AgencyModel extends AbstractModel<Agency> {
         super(agency);
     }
 
-    public void ShowDepart(String name) {
+    public void ShowDepart(String name) throws IOException {
         Depart depart = entity.GetDepart(name);
         if (depart != null) {
             DepartModel departModel = new DepartModel(depart);
@@ -33,7 +34,7 @@ public class AgencyModel extends AbstractModel<Agency> {
         }
     }
 
-    public Depart ChangeDepart(String name, IRead iread) {
+    public Depart ChangeDepart(String name, IRead iread) throws IOException {
         ShowDepart(name);
         Depart depart = entity.GetDepart(name);
         entity.DeleteDepart(name);
@@ -49,7 +50,7 @@ public class AgencyModel extends AbstractModel<Agency> {
         return depart;
     }
 
-    public void SearchDepart(String O) {
+    public void SearchDepart(String O) throws IOException {
         Collection<Depart> field = entity.Values();
         Pattern pat;
         Matcher mat;
@@ -77,18 +78,18 @@ public class AgencyModel extends AbstractModel<Agency> {
         entity.SetDepart((Depart) context.getProperty("depart"));
     }
 
-    public void show(IContext context) {
+    public void show(IContext context) throws IOException {
         ShowDepart(String.valueOf(context.getProperty("title")));
     }
 
-    public void redact(IContext context, IRead iread) {
+    public void redact(IContext context, IRead iread) throws IOException {
         entity.SetDepart(ChangeDepart(String.valueOf(context.getProperty("title")), iread));
     }
 
-    public void search(IContext context) {
+    public void search(IContext context) throws IOException {
         SearchDepart(String.valueOf(context.getProperty("pattern")));
     }
-    
+
     public void delete(IContext context) {
         entity.DeleteDepart(String.valueOf(context.getProperty("title")));
     }
