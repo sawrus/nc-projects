@@ -1,4 +1,4 @@
-package com.solutions.mvc.entities;
+package com.solutions.entities;
 
 import java.io.Serializable;
 
