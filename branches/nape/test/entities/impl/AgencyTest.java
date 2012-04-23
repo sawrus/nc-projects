@@ -6,13 +6,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertSame;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Chaotickgood
- * Date: 21.04.12
- * Time: 19:52
- * To change this template use File | Settings | File Templates.
- */
 public class AgencyTest {
 
     private Agency agency = new Agency();
