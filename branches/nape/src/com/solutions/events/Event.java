@@ -1,7 +1,7 @@
-package com.solutions.mvc.events;
+package com.solutions.events;
 
 
-import com.solutions.mvc.context.IContext;
+import com.solutions.context.IContext;
 
 public interface Event {
     IContext getContext();
