@@ -1,8 +1,7 @@
-package com.solutions.models.impl;
+package com.solutions.events.impl;
 
 import com.solutions.context.IContext;
-import com.solutions.entities.impl.Depart;
-import com.solutions.models.AbstractModel;
+import com.solutions.events.Event;
 
 public class DepartModel extends AbstractModel<Depart> {
     public DepartModel(Depart depart) {
