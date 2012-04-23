@@ -14,6 +14,7 @@ import com.solutions.views.IRead;
 import com.solutions.views.impl.DepartConsoleView;
 import com.solutions.views.impl.VicarConsoleView;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.regex.Matcher;
@@ -24,12 +25,12 @@ public class OfficeModel extends AbstractModel<Office> {
         super(office);
     }
 
-public OfficeModel(Office office, IModel parent) {
+    public OfficeModel(Office office, IModel parent) {
         super(office);
         setParent(parent);
     }
 
-    public void ShowVicar(String name) {
+    public void ShowVicar(String name)  throws IOException {
         Vicar vicar = entity.GetVicar(name);
         if (vicar != null) {
             DepartModel departModel = new DepartModel(vicar.getDepart());
@@ -46,7 +47,7 @@ public OfficeModel(Office office, IModel parent) {
         }
     }
 
-    public Vicar ChangeVicar(String name, IRead iread) {
+    public Vicar ChangeVicar(String name, IRead iread) throws IOException {
         ShowVicar(name);
         Vicar vicar = new Vicar();
         vicar = entity.GetVicar(name);
@@ -70,7 +71,7 @@ public OfficeModel(Office office, IModel parent) {
         return vicar;
     }
 
-    public void SearchVicar(String O) {
+    public void SearchVicar(String O)throws IOException {
         Collection<Vicar> field = entity.Values();
         Pattern pat;
         Matcher mat;
@@ -100,21 +101,21 @@ public OfficeModel(Office office, IModel parent) {
         System.out.println(parent.getEntity());
         Depart z = ((Agency) parent.getEntity()).CheckDepart(y.getDepart().getName());
         y.setDepart(z);
-        entity.SetVicar((Vicar) context.getProperty("vicar"));  
+        entity.SetVicar((Vicar) context.getProperty("vicar"));
     }
 
-    public void show(IContext context) {
+    public void show(IContext context)throws IOException {
         ShowVicar(String.valueOf(context.getProperty("name")));
     }
 
-    public void redact(IContext context, IRead iread) {
+    public void redact(IContext context, IRead iread)throws IOException {
         entity.SetVicar(ChangeVicar(String.valueOf(context.getProperty("name")), iread));
     }
 
-    public void search(IContext context) {
+    public void search(IContext context)throws IOException {
         SearchVicar(String.valueOf(context.getProperty("pattern")));
     }
-    
+
     public void delete(IContext context) {
         entity.DeleteVicar(String.valueOf(context.getProperty("name")));
     }
