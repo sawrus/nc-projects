@@ -10,31 +10,19 @@ import java.io.IOException;
 
 public class DepartController extends AbstractController<DepartModel, DepartConsoleView> {
     private EventHandler departEventHandler = new EventHandler() {
-        public void handle(Event event) {
+        public void handle(Event event) throws IOException {
             switch ((DepartEvent) event) {
                 case CLEAR:
                     model.clear();
                     break;
                 case FILL:
-                    try {
-                        fillDepart();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    fillDepart();
                     break;
                 case SHOW:
-                    try {
-                        show();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    show();
                     break;
                 case REDACT:
-                    try {
-                        redact();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    redact();
                     break;
                 default:
                     throw new IllegalStateException();
@@ -60,7 +48,7 @@ public class DepartController extends AbstractController<DepartModel, DepartCons
         model.redact(view.context);
     }
 
-    public void handleEvent(Event event) {
+    public void handleEvent(Event event) throws IOException {
         if (event instanceof DepartEvent) {
             departEventHandler.handle(event);
         }
