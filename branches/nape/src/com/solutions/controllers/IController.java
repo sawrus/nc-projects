@@ -1,8 +1,8 @@
-package com.solutions.mvc.controllers;
+package com.solutions.controllers;
 
-import com.solutions.mvc.events.Event;
-import com.solutions.mvc.models.IModel;
-import com.solutions.mvc.views.IView;
+import com.solutions.events.Event;
+import com.solutions.models.IModel;
+import com.solutions.views.IView;
 
 public interface IController<TModel extends IModel, TView extends IView> {
     void setModel(TModel model);
