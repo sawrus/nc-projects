@@ -1,4 +1,4 @@
-package com.solutions.mvc.context;
+package com.solutions.context;
 
 public interface IContext {
     void setProperty(String name, Object value);
