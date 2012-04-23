@@ -1,8 +1,8 @@
-package com.solutions.mvc.models;
+package com.solutions.models;
 
-import com.solutions.mvc.entities.IEntity;
+import com.solutions.entities.IEntity;
 
-public abstract class AbstractModel<TEntity extends IEntity> implements IModel<TEntity>{
+public abstract class AbstractModel<TEntity extends IEntity> implements IModel<TEntity> {
     protected TEntity entity;
     protected IModel parent;
 
