@@ -10,46 +10,26 @@ import java.io.IOException;
 
 public class AgencyController extends AbstractController<AgencyModel, AgencyConsoleView> {
     private final EventHandler agencyEventHandler = new EventHandler() {
-        public void handle(Event event) {
+        public void handle(Event event) throws IOException {
             switch ((AgencyEvent) event) {
                 case CLEAR:
                     model.clear();
                     break;
                 case FILL:
-                    try {
-                        fillDepart();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    fillDepart();
                     break;
                 case SHOW:
-                    try {
-                        show();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    show();
                     break;
                 case REDACT:
-                    try {
-                        redact();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    redact();
                     break;
                 case SEARCH:
-                    try {
-                        search();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    search();
                     break;
                 case DELETE:
-                    try {
-                        delete();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    break;    
+                    delete();
+                    break;
                 default:
                     throw new IllegalStateException();
             }
@@ -75,14 +55,13 @@ public class AgencyController extends AbstractController<AgencyModel, AgencyCons
         view.redact();
         model.redact(view.context, view.iread);
     }
-    
+
     private void delete() throws IOException {
         view.delete();
         model.delete(view.context);
     }
 
-
-    public void handleEvent(Event event) {
+    public void handleEvent(Event event) throws IOException {
         if (event instanceof AgencyEvent) {
             agencyEventHandler.handle(event);
         }
