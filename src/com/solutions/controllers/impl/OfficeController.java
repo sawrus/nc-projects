@@ -10,49 +10,26 @@ import java.io.IOException;
 
 public class OfficeController extends AbstractController<OfficeModel, OfficeConsoleView> {
     private final EventHandler officeEventHandler = new EventHandler() {
-        public void handle(Event event) {
+        public void handle(Event event) throws IOException {
             switch ((OfficeEvent) event) {
                 case CLEAR:
                     model.clear();
                     break;
                 case FILL:
-                    try {
-                        System.out.println("yes");
-                        fillVicar();
-                        System.out.println("yes");
-                    } catch (IOException e) {
-                        System.out.println("no");
-                        throw new RuntimeException(e);
-                    }
+                    fillVicar();
                     break;
                 case SHOW:
-                    try {
-                        show();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    show();
                     break;
                 case REDACT:
-                    try {
-                        redact();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    redact();
                     break;
                 case SEARCH:
-                    try {
-                        search();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    search();
                     break;
                 case DELETE:
-                    try {
-                        delete();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    break;    
+                    delete();
+                    break;
                 default:
                     throw new IllegalStateException();
             }
@@ -78,13 +55,13 @@ public class OfficeController extends AbstractController<OfficeModel, OfficeCons
         view.redact();
         model.redact(view.context, view.iread);
     }
-    
+
     private void delete() throws IOException {
         view.delete();
         model.delete(view.context);
     }
 
-    public void handleEvent(Event event) {
+    public void handleEvent(Event event) throws IOException {
         if (event instanceof OfficeEvent) {
             officeEventHandler.handle(event);
         }
