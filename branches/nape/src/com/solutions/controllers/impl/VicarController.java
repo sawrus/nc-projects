@@ -10,31 +10,19 @@ import java.io.IOException;
 
 public class VicarController extends AbstractController<VicarModel, VicarConsoleView> {
     private final EventHandler vicarEventHandler = new EventHandler() {
-        public void handle(Event event) {
+        public void handle(Event event) throws IOException {
             switch ((VicarEvent) event) {
                 case CLEAR:
                     model.clear();
                     break;
                 case FILL:
-                    try {
-                        fillVicar();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    fillVicar();
                     break;
                 case SHOW:
-                    try {
-                        show();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    show();
                     break;
                 case REDACT:
-                    try {
-                        redact();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    redact();
                     break;
                 default:
                     throw new IllegalStateException();
@@ -65,7 +53,7 @@ public class VicarController extends AbstractController<VicarModel, VicarConsole
 
     }
 
-    public void handleEvent(Event event) {
+    public void handleEvent(Event event) throws IOException {
         if (event instanceof VicarEvent) {
             vicarEventHandler.handle(event);
         }
