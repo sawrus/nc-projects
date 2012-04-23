@@ -1,7 +1,7 @@
-package com.solutions.mvc.views;
+package com.solutions.views;
 
-import com.solutions.mvc.context.Context;
-import com.solutions.mvc.context.IContext;
+import com.solutions.context.Context;
+import com.solutions.context.IContext;
 
 public abstract class AbstractView implements IView{
     public final IContext context = new Context();
