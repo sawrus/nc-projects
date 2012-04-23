@@ -1,4 +1,4 @@
-package com.solutions.mvc.context;
+package com.solutions.context;
 
 import java.util.HashMap;
 import java.util.Map;
