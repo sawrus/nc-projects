@@ -1,18 +1,17 @@
-package com.solutions.mvc.XML;
+package com.solutions.XML;
 
-import com.solutions.mvc.entities.impl.Depart;
-import com.solutions.mvc.entities.impl.Office;
-import com.solutions.mvc.entities.impl.Agency;
-import com.solutions.mvc.entities.impl.Vicar;
+import com.solutions.entities.impl.Agency;
+import com.solutions.entities.impl.Office;
+import com.solutions.entities.impl.Vicar;
 
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
+
 
 
 public class XML {
