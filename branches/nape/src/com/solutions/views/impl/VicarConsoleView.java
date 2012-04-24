@@ -9,8 +9,15 @@ public class VicarConsoleView extends ConsoleView {
         context.setProperty("lastName", iread.readParameter("Vicar lastName"));
         context.setProperty("depart", iread.readParameter("Depart"));
         context.setProperty("phone", iread.readParameter("Vicar phone"));
-        context.setProperty("salary", new Integer(iread.readParameter("Vicar salary")));
-
+        boolean y = false;
+        while (!y) {
+            try {
+                context.setProperty("salary", new Integer(iread.readParameter("Vicar salary")));
+                y = true;
+            } catch (NumberFormatException e) {
+                System.out.println("You write not number");
+            }
+        }
     }
 
     public void redact() throws IOException {
@@ -50,7 +57,15 @@ public class VicarConsoleView extends ConsoleView {
                 continue;
             }
             if (l == 6) {
-                context.setProperty("salary", new Integer(iread.readParameter("Vicar salary")));
+                boolean y = false;
+                while (!y) {
+                    try {
+                        context.setProperty("salary", new Integer(iread.readParameter("Vicar salary")));
+                        y = true;
+                    } catch (NumberFormatException e) {
+                        System.out.println("You write not number");
+                    }
+                }
                 continue;
             }
             if (l == 7) {
