@@ -40,19 +40,28 @@ public class XML {
             GZIPInputStream gs = new GZIPInputStream(in);
             XMLDecoder xmlDecoder = new XMLDecoder(gs);
             Vicar obj = new Vicar();
-            while (true) {
+            boolean y = false;
+            while (!y) {
                 try {
                     obj = (Vicar) xmlDecoder.readObject();
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("It is end of file");
-                    break;
+                    y=true;
+                    continue;
                 }
+
+                try{
                 pers.SetVicar(obj);
+                }catch (NullPointerException e){
+                    System.out.println("This vicar is null");
+                    y=true;
+                    continue;
+                }
+
                 try {
                     dep.SetDepart(obj.getDepart());
-                    dep.SetDepart(obj.getDepart());
                 } catch (NullPointerException e) {
-
+                    System.out.println("This depart is null");
                 }
             }
             xmlDecoder.close();
