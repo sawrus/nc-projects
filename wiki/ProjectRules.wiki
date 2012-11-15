@@ -44,9 +44,9 @@
 
 = Литература =
 
-1)     Алгоритмы – Кнут и другие мозго*
+1)     Алгоритмы – Кнут и др.
 
-2)     Практика кодирования – дадюшка джоб Prentice.Hall.Clean.Code.A.Handbook.of.Agile.Software.Craftsmanship.Aug.2008.pdf **
+2)     Практика кодирования – Prentice.Hall.Clean.Code.A.Handbook.of.Agile.Software.Craftsmanship.Aug.2008.pdf **
 
 3)     Паттерны проектирования – GoF (прочитать всю книгу желательно)
 
